@@ -19,8 +19,8 @@ int ft_isenv(char *str, int n)
     i = 0;
     while(g_env[i])
     {
-        if(ft_strnstr(g_env[i], ft_strtoupper(str), n) != NULL)
-            return(1);
+        if(ft_strequ(ft_strsub(g_env[i], (unsigned int)0, (size_t)n), ft_strtoupper(str)))
+            return (i);
         i++;
     }
     return(0);
@@ -41,10 +41,11 @@ void    ft_echo_env(char *str)
             res[j++] = str[i];
         i++;
     }
-    if(ft_isenv(res, ft_strlen(str) - 1))
-        ft_putstr("echo env variable");
+    if(!ft_isenv(res, ft_strlen(str) - 1))
+        ft_putstr("\n");
     else
-        ft_putstr(res);
+        ft_print_env_value(ft_isenv(res, ft_strlen(str) - 1),ft_strlen(str) - 1);
+        
 }
 
 void    ft_putstrq(char *str)

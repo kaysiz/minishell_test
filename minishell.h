@@ -22,5 +22,10 @@
 char **g_env;
 void    ft_env();
 void    ft_echo(char **command);
+void    ft_print_env_value(int index, int n);
+int	    ft_envlen(char **envp);
+void    ft_setenv(char **command);
+int ft_isenv(char *str, int n);
+void    ft_unsetenv(char **command);
 
 #endif

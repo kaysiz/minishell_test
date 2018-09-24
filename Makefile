@@ -19,7 +19,9 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC =  main.c \
 	   ft_env.c \
-	   ft_echo.c 
+	   ft_echo.c \
+	   ft_setenv.c \
+	   ft_unsetenv.c
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
 
 all: $(NAME)

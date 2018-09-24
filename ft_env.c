@@ -18,5 +18,15 @@ void    ft_env()
 
     i = 0;
     while(g_env[i])
-        printf("%s\n", g_env[i++]);
+        ft_putendl(g_env[i++]);
+}
+
+void    ft_print_env_value(int index, int n)
+{
+    n++;
+    while(g_env[index][n])
+    {
+        ft_putchar(g_env[index][n]);
+        n++;
+    }
 }

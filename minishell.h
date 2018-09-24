@@ -22,7 +22,5 @@
 char **g_env;
 void    ft_env();
 void    ft_echo(char **command);
-char    *ft_strtoupper(char *str);
-char    *ft_strtolower(char *str);
 
 #endif

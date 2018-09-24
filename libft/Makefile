@@ -58,7 +58,9 @@ SRC = ft_atoi.c \
       ft_strtrim.c \
 	  ft_strsplit.c \
       ft_strndup.c \
-	  get_next_line.c	  
+	  get_next_line.c \
+	  ft_strtoupper.c \
+	  ft_strtolower.c  
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

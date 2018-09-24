@@ -79,4 +79,6 @@ void	ft_memdel(void **ap);
 char	*ft_strndup(const char *str, size_t n);
 char	**ft_strsplit(char const *s, char d);
 int     get_next_line(const int fd, char **line);
+char    *ft_strtoupper(char *str);
+char    *ft_strtolower(char *str)
 #endif

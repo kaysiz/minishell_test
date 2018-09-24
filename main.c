@@ -39,13 +39,13 @@ void	ft_envcpy(char **envp)
 
 	i = 0;
 	len = ft_envlen(envp);
-	g_env = (char **)malloc(sizeof(char *) * len);
+	g_env = (char **)malloc(sizeof(char *) * (len + 1));
 	while (i < len)
 	{
 		g_env[i] = envp[i];
 		i++;
 	}
-	
+	g_env[i] = NULL;	
 }
 void	ft_exit()
 {}

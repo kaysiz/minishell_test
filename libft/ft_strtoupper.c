@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strtoupper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksiziva <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/17 09:27:48 by ksiziva           #+#    #+#             */
-/*   Updated: 2018/09/17 09:35:05 by ksiziva          ###   ########.fr       */
+/*   Created: 2018/09/24 10:04:15 by ksiziva           #+#    #+#             */
+/*   Updated: 2018/09/24 10:04:20 by ksiziva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <unistd.h>
-# include <sys/wait.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-char **g_env;
-void    ft_env();
-void    ft_echo(char **command);
-char    *ft_strtoupper(char *str);
-char    *ft_strtolower(char *str);
+char    *ft_strtoupper(char *str)
+{
+    int i;
+    char *res;
 
-#endif
+    i = 0;
+    res = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
+    while(str[i])
+    {
+        res[i] = ft_toupper(str[i]);
+        i++;
+    }
+    res[i] = '\0';
+    return (res);
+}

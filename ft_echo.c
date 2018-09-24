@@ -12,19 +12,39 @@
 
 #include "minishell.h"
 
-void    ft_echo_env(char *str)
+int ft_isenv(char *str, int n)
 {
     int i;
 
     i = 0;
+    while(g_env[i])
+    {
+        if(ft_strnstr(g_env[i], ft_strtoupper(str), n) != NULL)
+            return(1);
+        i++;
+    }
+    return(0);
+}
+
+void    ft_echo_env(char *str)
+{
+    int i;
+    int j;
+    char *res;
+
+    res = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
+    i = 1;
+    j = 0;
     while(str[i])
     {
         if(ft_isalpha(str[i]))
-            ft_putchar(ft_toupper(str[i]));
-        else
-            ft_putchar(str[i]);
+            res[j++] = str[i];
         i++;
     }
+    if(ft_isenv(res, ft_strlen(str) - 1))
+        ft_putstr("echo env variable");
+    else
+        ft_putstr(res);
 }
 
 void    ft_putstrq(char *str)

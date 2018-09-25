@@ -53,57 +53,20 @@ int	main(int ac, char **av, char **envp)
 {
 	ac = 0;
 	av = 0;
+	int status;
 	ft_envcpy(envp);
-
-	// char	*input;
-	// char	**arg;
-	// int		i;
-	// pid_t child_pid;
-    // int stat_loc;
-
-	// i = 0;
-	// while (env[j] != '\0')
-	// {
-	// 	ft_printf("%s\n", env[j]);
-	// 	j++;
-	// }
-	// ac = 0; av = 0; envp = 0;
-	// while (1)
-	// {
-	// 	printf("input> ");
-	// 	input = NULL;
-	// 	get_next_line(0, &input);
-	// 	arg = ft_strsplit(input, ' ');
-	// 	free(input);
-	// 	if (!arg[0]) {      /* Handle empty commands */
-    //         free(input);
-    //         free(arg);
-    //         continue;
-    //     }
-
-    //     child_pid = fork();
-    //     if (child_pid == 0) {
-    //         /* Never returns if the call is successful */
-    //         printf("This won't be printed if execvp is successul\n");
-    //     } else {
-    //         waitpid(child_pid, &stat_loc, WUNTRACED);
-    //     }
-
-    //     free(input);
-    //     free(arg);
-	// 	i = 0;
-	// }
 	char **command;
     char *input;
     pid_t child_pid;
 	welcomeScreen();
     while (1) {
-		
+
 		ft_putstr("$> ");
         input = NULL;
         get_next_line(0, &input);
 		command = ft_strsplit(input, ' ');
-        if (!command[0]) {      /* Handle empty commands */
+        if (!command[0]) 
+		{  
             free(input);
             free(command);
             continue;
@@ -119,22 +82,28 @@ int	main(int ac, char **av, char **envp)
 		else if(ft_strcmp(command[0], "unsetenv") == 0)
 			ft_unsetenv(command);
 		else if(ft_strcmp(command[0], "exit") == 0)
-			break;
+		{
+			ft_putendl("\nGoodbye\n");
+			exit(0);
+		}
 		else
 		{
 			child_pid = fork();
 			if (child_pid == 0)
 			{
-				execve(command[0], command, g_env);
+				execve(command[0], command, envp);
 				ft_putstr("minishell: command not found: ");
 				ft_putendl(command[0]);
 			}
+			else if(child_pid < 0)
+				ft_putendl("Error forking");
 			else {
-				wait(NULL);
+				wait(&status);
 			}
 		}
         free(input);
         free(command);
     }
+	sleep(50);
 	return(0);
 }

@@ -47,9 +47,4 @@ void    ft_unsetenv(char **command)
         g_env[i] = NULL;
         free(temp);
     }
-    else
-    {
-        ft_putstr(command[1]);
-        ft_putendl(": is not set in the environment.");
-    }
 }

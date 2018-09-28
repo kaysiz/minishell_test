@@ -47,17 +47,18 @@ void	ft_envcpy(char **envp)
 	}
 	g_env[i] = NULL;	
 }
-void	ft_exit()
-{}
+void	ft_clear()
+{
+	ft_putstr("\033[1;1H\033[2J");
+}
+
 int	main(int ac, char **av, char **envp)
 {
 	ac = 0;
 	av = 0;
-	int status;
 	ft_envcpy(envp);
 	char **command;
     char *input;
-    pid_t child_pid;
 	welcomeScreen();
     while (1) {
 
@@ -81,26 +82,15 @@ int	main(int ac, char **av, char **envp)
 			ft_setenv(command);
 		else if(ft_strcmp(command[0], "unsetenv") == 0)
 			ft_unsetenv(command);
+		else if(ft_strcmp(command[0], "clear") == 0)
+			ft_clear();
 		else if(ft_strcmp(command[0], "exit") == 0)
 		{
 			ft_putendl("\nGoodbye\n");
 			exit(0);
 		}
 		else
-		{
-			child_pid = fork();
-			if (child_pid == 0)
-			{
-				execve(command[0], command, envp);
-				ft_putstr("minishell: command not found: ");
-				ft_putendl(command[0]);
-			}
-			else if(child_pid < 0)
-				ft_putendl("Error forking");
-			else {
-				wait(&status);
-			}
-		}
+			ft_exec(command);
         free(input);
         free(command);
     }

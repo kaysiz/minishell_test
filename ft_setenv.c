@@ -33,7 +33,8 @@ void    ft_setenv(char **command)
             temp[i] = g_env[i];
             i++;
         }
-        temp[i] = ft_strdup(ft_strjoin(ft_strjoin(command[1], "="), command[2]));
+        temp[i] = ft_strdup(ft_strjoin(ft_strjoin(command[1], "="), \
+        command[2]));
         free(g_env);
         g_env = (char **)malloc(sizeof(char *) * (len + 2));
         i = 0;

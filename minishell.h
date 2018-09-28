@@ -27,5 +27,6 @@ int	    ft_envlen(char **envp);
 void    ft_setenv(char **command);
 int ft_isenv(char *str, int n);
 void    ft_unsetenv(char **command);
+void    ft_exec(char **command);
 
 #endif
